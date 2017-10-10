@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- CHARACTER SET -->
+		<meta charset="utf-8">
+
+		<!-- VIEWPORT SIZING FOR ALL DEVICES -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- AUTHOR -->
+		<meta name="author" content="Tyler West">
+	
+		<!-- DESCRIPTION -->
+		<meta name="description" content="Find your favorite movies!">
+	
+		<!-- TITLE -->
+		<title>Movie Info</title>
+		
+		<!-- BOOTSWATCH(BOOTSTRAP + BOOTSTRAP THEME) -->
+		<link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.min.css">
+
+		<!-- CUSTOM EXTERNAL STYLESHEET -->
+		<link rel="stylesheet" href="css/main.css">
+
+		<!-- FONT AWESOME LINK -->
+		<script src="https://use.fontawesome.com/b406684c95.js"></script>
+	</head>
+
+	<body>
+		<!-- NAVIGATION -->
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">MovieInfo</a>
+				</div>				
+			</div>			
+		</nav>
+
+		<!-- SEARCH SECTION -->
+		<div class="container">
+			<div class="jumbotron">
+				<h3 class="text-center">Search For Any Movie</h3>
+				<form id="searchForm">
+					<input type="text" class="form-control" id="searchText" placeholder="Search Movie...">
+				</form>
+			</div>
+		</div>
+
+		<!-- OUTPUT -->
+		<div class="container">
+			<div class="row" id="movies"></div>
+		</div>
+
+		
+
+
+
+
+		<!-- JQUERY  -->
+		<!-- required for bootstrap -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- AXIOS -->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+		<!-- CUSTOM JS FILE -->
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+
+</html>

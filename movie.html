@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- CHARACTER SET -->
+		<meta charset="utf-8">
+
+		<!-- VIEWPORT SIZING FOR ALL DEVICES -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- AUTHOR -->
+		<meta name="author" content="Tyler West">
+	
+		<!-- DESCRIPTION -->
+		<meta name="description" content="a brief description of the website">
+	
+		<!-- TITLE -->
+		<title>Movie Info</title>
+
+		<!-- SHORTCUT ICON -->
+		<link rel="shortcut icon" href="img/favicon.ico">
+
+		<!-- BOOTSTRAP CDN LINK -->
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> -->
+		
+		<!-- BOOTSWATCH(BOOTSTRAP THEME) -->
+		<link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.min.css">
+
+		<!-- CUSTOM EXTERNAL STYLESHEET -->
+		<link rel="stylesheet" href="css/main.css">
+
+		<!-- FONT AWESOME LINK -->
+		<script src="https://use.fontawesome.com/b406684c95.js"></script>
+	</head>
+
+	<body>
+		<!-- NAVIGATION -->
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">MovieInfo</a>
+				</div>				
+			</div>			
+		</nav>
+
+		<div class="container">
+			<div class="well" id="movie"></div>
+		</div>
+
+		
+
+		<!-- JQUERY  -->
+		<!-- required for bootstrap -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- OPTIONAL BOOTSTRAP SCRIPTS -->
+		<!-- Popper.js, then Bootstrap JS -->
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script> -->
+
+		<!-- AXIOS -->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+		<!-- CUSTOM JS FILE -->
+		<script type="text/javascript" src="js/main.js"></script>
+
+		<script type="text/javascript">
+			getMovie();
+		</script>
+	</body>
+
+</html>

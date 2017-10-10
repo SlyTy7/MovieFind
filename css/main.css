@@ -1,0 +1,41 @@
+.movie-img{
+	width: 100%;
+}
+
+@media(min-width: 768px){
+	.movie-img{
+		height: 458px;
+	}
+
+	#movies div.well {
+		height: 600px;
+	}
+}
+
+@media(min-width: 992px){
+	.movie-img{
+		height: 259px;
+	}
+
+	#movies div.well {
+		height: 423px;
+	}
+}
+
+@media(min-width: 1200px){
+	.movie-img{
+		height: 334px;
+	}
+
+	#movies div.well {
+		height: 478px;
+	}
+}
+
+.thumbnail {
+	width: 100%;
+}
+
+#movie div.well{
+	margin: auto 15px;
+}
