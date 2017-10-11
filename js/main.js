@@ -69,6 +69,7 @@ function getMovies(searchText){
 				let title = movie.title;
 				let id = movie.id;
 
+				//checks to see if movie poster is available from API
 				if(movie.poster_path != null){
 					image = "https://image.tmdb.org/t/p/w500"+movie.poster_path
 				}else if(movie.poster_path == null){
@@ -137,17 +138,22 @@ function getMovie(){
 			}
 
 
+			//runs if crew info available
 			if(movie.credits.crew.length > 0){
+				//iterates over each crew member
 				$.each(movie.credits.crew, function(index, element){
+					//finds the director, if none available it changes value of director
 					if(element.job == "Director"){
 						director = element.name;
+						return false;
 					}else{
 						director = "Not Available";
 					}
 				});
 			}else{
-				console.log("no crew");
+				director = "Not Available";
 			}
+
 
 			//runs if cast info is available
 			if(movie.credits.cast.length > 0){
