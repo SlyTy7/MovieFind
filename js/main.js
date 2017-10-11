@@ -66,15 +66,15 @@ function getMovie(){
 	axios.get("https://api.themoviedb.org/3/movie/"+movieId+"?api_key=e603619cc7ad76d78e846cf21cd944cf&language=en-US&append_to_response=credits")
 		//function that runs if API call succeeded
 		.then(function(response){
+			console.log(response);
 			let movie = response.data;
 			let image;			
 			let genresArr = [];
-			let director = movie.credits.crew[0].name;
+			let director;
 			let castArr = [];
 			let productionArr = [];
 			let releaseDate = movie.release_date.slice(0,4);
 			let runtime = movie.runtime;
-
 
 
 			//if no movie image available this enters a placeholder image
@@ -94,6 +94,15 @@ function getMovie(){
 				genresArr.push("Not Available");
 			}
 
+			if(movie.credits.crew.length > 0){
+				$.each(movie.credits.crew, function(index, element){
+					if(movie.credits.crew[index].job == "Director"){
+						return director = movie.credits.crew[index].name;
+					}else{
+						director = "Not Available";
+					}
+				});
+			}
 
 			//runs if cast info is available
 			if(movie.credits.cast.length > 0){

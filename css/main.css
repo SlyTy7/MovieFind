@@ -1,3 +1,8 @@
+nav .navbar-brand{
+	height: auto;
+	padding: 7px 0;
+}
+
 .movie-img{
 	width: 100%;
 }
