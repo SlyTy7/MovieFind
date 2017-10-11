@@ -22,8 +22,9 @@ A web application that searches movies by a title query and returns information 
 
 ## To-Do:
 
-  * Add subheading to movie title on 'More Info' page
-  * Add multiple genres to movie
+  * Add multiple pages of results on search
+  * Add similar movies to movie info page
+  * Add search by keyword, genre, and year
 
 ## Credits
 
