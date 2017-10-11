@@ -28,3 +28,4 @@ A web application that searches movies by a title query and returns information 
 ## Credits
 
 API calls made from [The Movie DB](https://www.themoviedb.org/documentation/api)
+Logo made with [logomakr](https://www.logomakr.com)
