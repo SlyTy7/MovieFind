@@ -24,7 +24,6 @@ function getMovies(searchText){
 				let image;
 				let title = movie.title;
 				let id = movie.id;
-				console.log(image);
 
 				if(movie.poster_path != null){
 					image = "https://image.tmdb.org/t/p/w500"+movie.poster_path
@@ -66,7 +65,6 @@ function getMovie(){
 	axios.get("https://api.themoviedb.org/3/movie/"+movieId+"?api_key=e603619cc7ad76d78e846cf21cd944cf&language=en-US&append_to_response=credits")
 		//function that runs if API call succeeded
 		.then(function(response){
-			console.log(response);
 			let movie = response.data;
 			let image;			
 			let genresArr = [];
