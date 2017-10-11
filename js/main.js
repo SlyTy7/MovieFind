@@ -21,9 +21,16 @@ function getMovies(searchText){
 
 			//gets image, title, and link for each movie in results
 			$.each(movies, function(index, movie){
-				let image = "https://image.tmdb.org/t/p/w500"+movie.poster_path;
+				let image;
 				let title = movie.title;
 				let id = movie.id;
+				console.log(image);
+
+				if(movie.poster_path != null){
+					image = "https://image.tmdb.org/t/p/w500"+movie.poster_path
+				}else if(movie.poster_path == null){
+					image = "http://via.placeholder.com/500x700?text=No+Image+Available"
+				}
 				
 				//html formats each result
 				output += `
@@ -59,15 +66,23 @@ function getMovie(){
 	axios.get("https://api.themoviedb.org/3/movie/"+movieId+"?api_key=e603619cc7ad76d78e846cf21cd944cf&language=en-US&append_to_response=credits")
 		//function that runs if API call succeeded
 		.then(function(response){
-			console.log(response);
 			let movie = response.data;
-			let image = "https://image.tmdb.org/t/p/w500"+movie.poster_path;
-			let releaseDate = movie.release_date.slice(0,4);
-			let genresArr = []
-			let director = movie.credits.crew[1].name;
+			let image;			
+			let genresArr = [];
+			let director = movie.credits.crew[0].name;
 			let castArr = [];
+			let productionArr = [];
+			let releaseDate = movie.release_date.slice(0,4);
+			let runtime = movie.runtime;
 
-			
+
+
+			//if no movie image available this enters a placeholder image
+			if(movie.poster_path != null){
+					image = "https://image.tmdb.org/t/p/w500"+movie.poster_path
+			}else if(movie.poster_path == null){
+					image = "http://via.placeholder.com/500x700?text=No+Image+Available"
+			}
 
 			//runs if genre info is available
 			if(movie.genres.length > 0){
@@ -79,6 +94,7 @@ function getMovie(){
 				genresArr.push("Not Available");
 			}
 
+
 			//runs if cast info is available
 			if(movie.credits.cast.length > 0){
 				//add each cast member to castArr
@@ -88,7 +104,24 @@ function getMovie(){
 			}else{
 				castArr.push("Not Available");
 			}
+
+
+			//runs if production info is available
+			if(movie.production_companies.length > 0){
+				//add each cast member to castArr
+				$.each(movie.production_companies, function(index, element){
+					productionArr.push(" "+element.name);
+				});
+			}else{
+				productionArr.push("Not Available");
+			}
 			
+			//runs if runtime info not available
+			if(runtime < 1){
+				runtime = "Not Available";
+			}else if(runtime > 0){
+				runtime = runtime+" min.";
+			}
 			
 			
 
@@ -99,12 +132,14 @@ function getMovie(){
 					</div>
 					<div class="col-md-8 col-sm-6">
 						<h2>${movie.title}</h2>
+						<h6><i>${movie.tagline}</i></h6>
 						<ul class="list-group movie-info">
-							<li class="list-group-item"><strong>Released:</strong> ${releaseDate}</li>
 							<li class="list-group-item"><strong>Genres:</strong> ${genresArr}</li>
 							<li class="list-group-item"><strong>Director:</strong> ${director}</li>
 							<li class="list-group-item"><strong>Cast:</strong> ${castArr}</li>
-							<li class="list-group-item"><strong>Runtime:</strong> ${movie.runtime} minutes</li>
+							<li class="list-group-item"><strong>Production:</strong> ${productionArr}</li>
+							<li class="list-group-item"><strong>Release Year:</strong> ${releaseDate}</li>
+							<li class="list-group-item"><strong>Runtime:</strong> ${runtime}</li>
 						</ul>
 					</div>
 				</div>

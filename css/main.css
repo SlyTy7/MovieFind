@@ -39,3 +39,7 @@
 #movie div.well{
 	margin: auto 15px;
 }
+
+#movie .movie-info strong {
+	color: #2a9fd6;
+}
