@@ -98,15 +98,19 @@ function getMovies(searchText){
 		});
 }
 
+//stores movieId in sessionstorage so it can be accessed on movie.html
 function movieSelected(id){
 	sessionStorage.setItem("movieId", id);
 	window.location = "movie.html";
 	return false;
 }
 
+//opens movie detail page for movie selected
 function getMovie(){
+	//grabs movieId from storage
 	let movieId = sessionStorage.getItem("movieId");
 
+	//API call to get in-depth movie information
 	axios.get("https://api.themoviedb.org/3/movie/"+movieId+"?api_key=e603619cc7ad76d78e846cf21cd944cf&language=en-US&append_to_response=credits")
 		//function that runs if API call succeeded
 		.then(function(response){
@@ -164,6 +168,8 @@ function getMovie(){
 			}else{
 				castArr.push("Not Available");
 			}
+			//limits cast members displayed to first 10
+			castArr = castArr.slice(0, 10);
 
 
 			//runs if production info is available
