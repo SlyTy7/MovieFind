@@ -63,6 +63,34 @@ function getMovie(){
 			let movie = response.data;
 			let image = "https://image.tmdb.org/t/p/w500"+movie.poster_path;
 			let releaseDate = movie.release_date.slice(0,4);
+			let genresArr = []
+			let director = movie.credits.crew[1].name;
+			let castArr = [];
+
+			
+
+			//runs if genre info is available
+			if(movie.genres.length > 0){
+				//add each genre to genresArr
+				$.each(movie.genres, function(index, element){
+					genresArr.push(" "+element.name);
+				});
+			}else{
+				genresArr.push("Not Available");
+			}
+
+			//runs if cast info is available
+			if(movie.credits.cast.length > 0){
+				//add each cast member to castArr
+				$.each(movie.credits.cast, function(index, element){
+					castArr.push(" "+element.name);
+				});
+			}else{
+				castArr.push("Not Available");
+			}
+			
+			
+			
 
 			let output = `
 				<div class="row">
@@ -73,9 +101,9 @@ function getMovie(){
 						<h2>${movie.title}</h2>
 						<ul class="list-group movie-info">
 							<li class="list-group-item"><strong>Released:</strong> ${releaseDate}</li>
-							<li class="list-group-item"><strong>Genres:</strong> ${movie.genres[0].name}</li>
-							<li class="list-group-item"><strong>Director:</strong> ${movie.credits.crew[1].name}</li>
-							<li class="list-group-item"><strong>Cast:</strong> ${movie.credits.cast[0].name}, ${movie.credits.cast[1].name}, ${movie.credits.cast[2].name}</li>
+							<li class="list-group-item"><strong>Genres:</strong> ${genresArr}</li>
+							<li class="list-group-item"><strong>Director:</strong> ${director}</li>
+							<li class="list-group-item"><strong>Cast:</strong> ${castArr}</li>
 							<li class="list-group-item"><strong>Runtime:</strong> ${movie.runtime} minutes</li>
 						</ul>
 					</div>
