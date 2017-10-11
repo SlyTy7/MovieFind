@@ -2,6 +2,9 @@ $(document).ready(function(){
 
 	console.log("Page Ready");
 
+	//gets popular movies on page load
+	getPopular();
+
 	$("#searchForm").on("submit", function(event){
 		let searchText = $("#searchText").val();
 		getMovies(searchText);
@@ -10,12 +13,53 @@ $(document).ready(function(){
 
 });
 
+//returns list of currently popluar movies
+function getPopular(){
+	axios.get("https://api.themoviedb.org/3/movie/popular?api_key=e603619cc7ad76d78e846cf21cd944cf&language=en-US&page=1")
+		.then(function(response){
+			let popular = response.data.results;
+			let output = `
+				<h3>Current Popular Movies</h3>
+				<hr>
+			`;
+
+			//gets image, title, and link for each movie in results
+			$.each(popular, function(index, element){
+				let image;
+				let title = element.title;
+				let id = element.id;
+
+				if(element.poster_path != null){
+					image = "https://image.tmdb.org/t/p/w500"+element.poster_path
+				}else if(element.poster_path == null){
+					image = "http://via.placeholder.com/500x700?text=No+Image+Available"
+				}
+
+				//html formats each result
+				output += `
+					<div class="col-sm-6 col-md-3">
+						<div class="well text-center">
+							<img src="${image}" alt="Movie Poster of '${title}'" class="movie-img">
+							<h5>${title}</h5>
+							<a onclick="movieSelected('${id}')" class="btn btn-primary" href="#">Movie Details</a>
+						</div>
+					</div>
+				`;
+			});
+
+			$("#movies").html(output);
+		})
+		.catch(function(error){
+			console.log(error);
+		});
+}
+
+
 //returns list of movies that closely match search query
 function getMovies(searchText){
 	axios.get("https://api.themoviedb.org/3/search/movie?api_key=e603619cc7ad76d78e846cf21cd944cf&language=en-US&query="+searchText+"&page=1&include_adult=false")
 		//function that runs if API call succeeds
 		.then(function(response){
-			console.log(response);
 			let movies = response.data.results;
 			let output = "";
 
@@ -68,7 +112,7 @@ function getMovie(){
 			let movie = response.data;
 			let image;			
 			let genresArr = [];
-			let director;
+			let director = "";
 			let castArr = [];
 			let productionArr = [];
 			let releaseDate = movie.release_date.slice(0,4);
@@ -92,14 +136,17 @@ function getMovie(){
 				genresArr.push("Not Available");
 			}
 
+
 			if(movie.credits.crew.length > 0){
 				$.each(movie.credits.crew, function(index, element){
-					if(movie.credits.crew[index].job == "Director"){
-						return director = movie.credits.crew[index].name;
+					if(element.job == "Director"){
+						director = element.name;
 					}else{
 						director = "Not Available";
 					}
 				});
+			}else{
+				console.log("no crew");
 			}
 
 			//runs if cast info is available
