@@ -29,10 +29,18 @@ function getPopular(){
 				let title = element.title;
 				let id = element.id;
 
+				//puts placeholder image if none available
 				if(element.poster_path != null){
 					image = "https://image.tmdb.org/t/p/w500"+element.poster_path
 				}else if(element.poster_path == null){
 					image = "http://via.placeholder.com/500x700?text=No+Image+Available"
+				}
+
+				//shortens title if too long
+				console.log(title.length);
+				if(title.length>35){
+					title = title.substring(0, 31);
+					title = title + "...";
 				}
 
 				//html formats each result
