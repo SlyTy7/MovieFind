@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 });
 
-//returns list of currently popluar movies
+//returns list of currently popular movies
 function getPopular(){
 	axios.get("https://api.themoviedb.org/3/movie/popular?api_key=e603619cc7ad76d78e846cf21cd944cf&language=en-US&page=1")
 		.then(function(response){
@@ -37,7 +37,6 @@ function getPopular(){
 				}
 
 				//shortens title if too long
-				console.log(title.length);
 				if(title.length>35){
 					title = title.substring(0, 31);
 					title = title + "...";
@@ -82,6 +81,13 @@ function getMovies(searchText){
 					image = "https://image.tmdb.org/t/p/w500"+movie.poster_path
 				}else if(movie.poster_path == null){
 					image = "http://via.placeholder.com/500x700?text=No+Image+Available"
+				}
+
+				//shortens title if too long
+				console.log(title.length);
+				if(title.length>35){
+					title = title.substring(0, 31);
+					title = title + "...";
 				}
 				
 				//html formats each result
