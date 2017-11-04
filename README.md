@@ -2,7 +2,7 @@
 
 A web application that searches movies by a title query and returns information on the movie.
 
-[Check It Out Here](https://slyty7.github.io/MovieFind/)
+[Check it out here!](https://slyty7.github.io/MovieFind/)
 
 ## Built With
 
