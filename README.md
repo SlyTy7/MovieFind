@@ -1,3 +1,4 @@
+<!-- portfolio-meta display_name: Movie Find -->
 # Movie Find
 
 A web application that searches movies by a title query and returns information on the movie.
